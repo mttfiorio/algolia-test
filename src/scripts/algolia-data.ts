@@ -224,5 +224,14 @@ const data = [
     description:
       "The Segway Electric Scooter is a great way to get around town, with a top speed of 19 mph and a range of up to 28 miles.",
   },
+  {
+    objectID: "26",
+    name: "MacBook",
+    brand: "Apple",
+    category: "Computers",
+    price: 1199,
+    description:
+      "The MacBook Pro features Apple's own M1 chip, which offers faster performance and longer battery life than previous models.",
+  },
 ];
 export default data;
