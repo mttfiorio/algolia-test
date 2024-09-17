@@ -1,4 +1,5 @@
 import { Hit } from "algoliasearch";
+import { Highlight } from "react-instantsearch";
 
 interface HitProps {
   objectID?: string;
@@ -10,23 +11,27 @@ interface HitProps {
 }
 
 interface HitComponentProps {
-  hit: Hit;
+  hit: any; //needs Hit<BaseHit> but I can't find it in the lib?
 }
 
 const HitComponent = ({ hit }: HitComponentProps) => {
-  const { brand, name, category, price, description } = hit as HitProps;
+  const { price } = hit as HitProps;
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 h-full">
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="text-gray-700 text-base">{description}</p>
+        <h1 className="font-bold text-xl mb-2">
+          <Highlight attribute="name" hit={hit} />
+        </h1>
+        <p className="text-gray-700 text-base">
+          <Highlight attribute="description" hit={hit} />
+        </p>
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #{brand}
+          #<Highlight attribute="brand" hit={hit} />
         </span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #{category}
+          #<Highlight attribute="category" hit={hit} />
         </span>
       </div>
       <div className="px-6 pt-4 pb-2">
