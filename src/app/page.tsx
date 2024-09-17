@@ -2,7 +2,12 @@
 
 import HitComponent from "@/components/HitComponent";
 import { algoliasearch } from "algoliasearch";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch";
+import {
+  Hits,
+  InstantSearch,
+  Pagination,
+  SearchBox,
+} from "react-instantsearch";
 
 export default function Home() {
   if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID)
@@ -26,9 +31,16 @@ export default function Home() {
         <SearchBox className="text-black p-4" />
         <Hits
           classNames={{
-            list: "grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-col",
+            list: "grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
           }}
           hitComponent={({ hit }) => <HitComponent hit={hit} />}
+        />
+        <Pagination
+          classNames={{
+            root: "w-full py-8 h-[60px] flex justify-center",
+            list: "flex gap-10 font-bold text-xl ",
+            selectedItem: "underline",
+          }}
         />
       </InstantSearch>
     </>

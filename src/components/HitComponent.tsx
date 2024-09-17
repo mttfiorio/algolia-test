@@ -1,4 +1,3 @@
-import { Hit } from "algoliasearch";
 import { Highlight } from "react-instantsearch";
 
 interface HitProps {
@@ -17,8 +16,8 @@ interface HitComponentProps {
 const HitComponent = ({ hit }: HitComponentProps) => {
   const { price } = hit as HitProps;
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 h-full">
-      <div className="px-6 py-4">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg h-full">
+      <div className="px-4 py-4">
         <h1 className="font-bold text-xl mb-2">
           <Highlight attribute="name" hit={hit} />
         </h1>
