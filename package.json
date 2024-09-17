@@ -13,7 +13,8 @@
     "algoliasearch": "^5.4.3",
     "next": "14.2.11",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-instantsearch": "^7.13.1"
   },
   "devDependencies": {
     "@next/env": "^14.2.11",
