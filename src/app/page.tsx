@@ -1,5 +1,6 @@
 "use client";
 
+import { Autocomplete } from "@/components/Autocomplete";
 import HitComponent from "@/components/HitComponent";
 import { algoliasearch } from "algoliasearch";
 import {
@@ -8,7 +9,6 @@ import {
   Pagination,
   RangeInput,
   RefinementList,
-  SearchBox,
 } from "react-instantsearch";
 
 export default function Home() {
@@ -18,6 +18,8 @@ export default function Home() {
     throw new Error("NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY is not defined");
   if (!process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME)
     throw new Error("NEXT_PUBLIC_ALGOLIA_INDEX_NAME is not defined");
+  if (!process.env.NEXT_PUBLIC_ALGOLIA_INDEX_SUGGESTIONS)
+    throw new Error("NEXT_PUBLIC_ALGOLIA_INDEX_SUGGESTIONS is not defined");
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -29,7 +31,14 @@ export default function Home() {
       searchClient={searchClient}
       indexName={process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME}
     >
-      <SearchBox className="text-black p-4" />
+      <Autocomplete
+        searchClient={searchClient}
+        indexName={process.env.NEXT_PUBLIC_ALGOLIA_INDEX_SUGGESTIONS}
+        placeholder="Search products"
+        detachedMediaQuery="none"
+        openOnFocus
+      />
+
       <div className="flex gap-8">
         <RefinementList
           classNames={{
